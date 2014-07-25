@@ -1,3 +1,5 @@
+package jp.akira.abacus;
+
 public class AbacusCalculator {
     public static void main(String[] args){
 	AbacusCalculator app = new AbacusCalculator();
