@@ -7,5 +7,9 @@ public class AbacusCalculator {
     }
     private void processMain(){
 	System.out.println("Abacus Calculator");
+	Frame frame = new Frame();
+	frame.set(1);
+	frame.add(2);
+	System.out.println("1 + 2 = " + frame.value());
     }
 }
