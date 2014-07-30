@@ -15,11 +15,13 @@ public class Rod {
 	clear();
 	add(x);
     }
-    public void add(int x){
+    public int add(int x){
+	int carry = 0;
 	while(x > 0){
-	    addOne();
+	    carry += addOne();
 	    x--;
 	}
+	return carry;
     }
     
     
@@ -31,27 +33,45 @@ public class Rod {
 	    bead5.value();
 	return value;
     }
-    private void addOne(){
+
+    /**
+     * @params none
+     * @return int : carry over
+     */
+    private int addOne(){
 	if(bead1.isOff()){
 	    bead1.on();
-	    return;
+	    return 0;
 	}else if(bead2.isOff()){
 	    bead2.on();
-	    return;
+	    return 0;
 	}else if(bead3.isOff()){
 	    bead3.on();
-	    return;
+	    return 0;
 	}else if(bead4.isOff()){
 	    bead4.on();
-	    return;
+	    return 0;
 	}else if(bead5.isOff()){
 	    bead5.on();
 	    bead4.off();
 	    bead3.off();
 	    bead2.off();
 	    bead1.off();
+	    return 0;
 	}
+	bead5.off();
+	bead4.off();
+	bead3.off();
+	bead2.off();
+	bead1.off();
+	return 1;
     }
+
+    /**
+     * reset all value
+     * @params none
+     * @return void
+     */
     private void clear(){
 	bead5.off();
 	bead4.off();

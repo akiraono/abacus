@@ -7,9 +7,12 @@ public class AbacusCalculator {
     }
     private void processMain(){
 	System.out.println("Abacus Calculator");
-	Frame frame = new Frame();
-	frame.set(1);
-	frame.add(2);
-	System.out.println("1 + 2 = " + frame.value());
+	Frame frame = new Frame(10);
+	int x = 12;
+	int y = 21;
+	frame.set(x);
+	frame.add(y);
+	//System.out.println("" + x + " + " + y + " = " + frame.value());
+	System.out.println(frame.value());
     }
 }
