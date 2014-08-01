@@ -10,7 +10,11 @@ public class Rod {
     public Rod(){
 	clear();
     }
-    
+
+    /**
+     * @param int
+     * @return void
+     */
     public void set(int x){
 	clear();
 	add(x);
@@ -24,7 +28,12 @@ public class Rod {
 	return carry;
     }
     
-    
+    /**
+     * calculate current value
+     * @param none
+     * @return int
+     * @throws none
+     */
     public int value(){
 	int value = bead1.value() +
 	    bead2.value() +
