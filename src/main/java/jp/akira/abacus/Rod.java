@@ -19,6 +19,12 @@ public class Rod {
 	clear();
 	add(x);
     }
+
+    /**
+     * @param int
+     * @return int carry over data
+     * @throws none
+     */
     public int add(int x){
 	int carry = 0;
 	while(x > 0){
@@ -74,6 +80,39 @@ public class Rod {
 	bead2.off();
 	bead1.off();
 	return 1;
+    }
+
+    /**
+     * @param none
+     * @return int
+     */
+    private int subtractOne(){
+	if(bead4.isOn()){
+	    bead4.off();
+	    return 0;
+	}else if(bead3.isOn()){
+	    bead3.off();
+	    return 0;
+	}else if(bead2.isOn()){
+	    bead2.off();
+	    return 0;
+	}else if(bead1.isOn()){
+	    bead1.off();
+	    return 0;
+	}else if(bead5.isOn()){
+	    bead5.off();
+	    bead1.on();
+	    bead2.on();
+	    bead3.on();
+	    bead4.on();
+	    return 0;
+	}
+	bead5.on();
+	bead1.on();
+	bead2.on();
+	bead3.on();
+	bead4.on();
+	return 1; //borrow from upper rod
     }
 
     /**
