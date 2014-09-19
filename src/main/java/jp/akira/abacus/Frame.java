@@ -1,20 +1,23 @@
 package jp.akira.abacus;
 
 public class Frame {
-    private int rod_width = 1;
+    private int frame_width = 1;
     private Rod[]  rods;
     
-    public Frame(int rod_width){
-	this.rod_width = rod_width;
-	rods = new Rod[rod_width];
-	for(int i=0;i<rod_width;i++){
+    /**
+     *  constructor with parameter
+     */
+    public Frame(int frame_width){
+	this.frame_width = frame_width;
+	rods = new Rod[frame_width];
+	for(int i=0;i<frame_width;i++){
 	    rods[i] = new Rod();
 	}
     }
 
 
     public void set(int x){
-	int[] reed = parse_reed(x,rod_width);
+	int[] reed = parse_reed(x,frame_width);
 	//print_array(reed);
 	// if(reed.length > rods.length){
 	//     System.err.println("too large for this frame");
@@ -29,7 +32,7 @@ public class Frame {
     }
     
     public void add(int x){
-	int[] reed = parse_reed(x,rod_width);
+	int[] reed = parse_reed(x,frame_width);
 	//int reed.length = reed.length;
 	int rod_iterator = rods.length - 1;
 	// if(reed.length >= rods.length){
@@ -60,6 +63,12 @@ public class Frame {
 	return result;
     }
 
+    /**
+     * convert int value to array of integer
+     * @params int value
+     * @params int width
+     * @return int[]
+     */
     private int[] parse_reed(int x, int width){
 	//int reed = max_reed(x);
 	int[] result = new int[width];
