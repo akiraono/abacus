@@ -1,5 +1,18 @@
 package jp.akira.abacus;
 
+/**
+ *      | <5><5>
+ *     <5> |  |
+ *     ---------
+ *     <1> | <1> 
+ *     <1><1> |
+ *     <1><2><2>
+ *     <1><3><3>
+ *      | <4><4>
+ *
+ *         0  1 
+ */
+
 public class Rod {
     private Bead bead1 = new Bead(1);
     private Bead bead2 = new Bead(1);

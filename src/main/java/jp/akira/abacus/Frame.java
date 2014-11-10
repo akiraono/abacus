@@ -1,6 +1,8 @@
 package jp.akira.abacus;
+import org.apache.logging.log4j.*;
 
 public class Frame {
+    private static final Logger LOG = LogManager.getLogger(Frame.class);
     private int frame_width = 1;
     private Rod[]  rods;
     
@@ -82,18 +84,15 @@ public class Frame {
 	//print_array(result);
 	return result;
     }
+    
     private int max_reed(int input){
 	int reed = 0;
 	int x = input;
-	//if(x == 0) x = 1;
 	while(x>=1){
 	    x /= 10;
-	    //System.out.println(x);
 	    reed++;
 	}
-	//	double log10 = Math.log10(d);
-	//	int result = (int)Math.ceil(log10);
-	//System.out.println("max_reed input :" + input + " result:" + reed);
+	LOG.debug("input:" + input + " max_reed:" + reed);
 	return reed;
     }
     
