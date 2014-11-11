@@ -1,19 +1,22 @@
 package jp.akira.abacus;
+import org.apache.logging.log4j.*;
 
 /**
- *      | <5><5>
- *     <5> |  |
- *     ---------
- *     <1> | <1> 
- *     <1><1> |
- *     <1><2><2>
- *     <1><3><3>
- *      | <4><4>
- *
- *         0  1 
+ *     +================================+
+ *     | <5><5><5><5><5> |  |  |  |  |  |
+ *     |  |  |  |  |  | <5><5><5><5><5> |
+ *     +--------------------------------+
+ *     |  | <1><1><1><1> | <1><1><1><1> |
+ *     | <1> | <2><2><2><1> | <2><2><2> |
+ *     | <2><2> | <3><3><2><2> | <3><3> |
+ *     | <3><3> |  | <4><3><3><3> | <4> |
+ *     | <4><4> |  |  | <4><4><4><4> |  |
+ *     +================================+
+ *        0  1  2  3  4  5  6  7  8  9
  */
 
 public class Rod {
+    private static final Logger LOG = LogManager.getLogger(Rod.class);
     private Bead bead1 = new Bead(1);
     private Bead bead2 = new Bead(1);
     private Bead bead3 = new Bead(1);
@@ -43,6 +46,22 @@ public class Rod {
 	while(x > 0){
 	    carry += addOne();
 	    x--;
+	}
+	return carry;
+    }
+
+    /**
+     * @param int
+     * @return int carry over data
+     * @throws none
+     */
+    public int subtract(int x){
+	LOG.trace("input:" + x);
+	int carry = 0;
+	while(x > 0){
+	    carry += subtractOne();
+	    x--;
+	    LOG.trace("subtract:" + value());
 	}
 	return carry;
     }
@@ -139,5 +158,15 @@ public class Rod {
 	bead3.off();
 	bead2.off();
 	bead1.off();
+    }
+
+    public String toString(){
+	String s = "";
+	if(bead5.isOn()){
+	    s += "<5> | ";
+	}else{
+	    s += " | <5>";
+	}
+	return s;
     }
 }

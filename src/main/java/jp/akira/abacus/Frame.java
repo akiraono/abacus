@@ -17,34 +17,37 @@ public class Frame {
 	}
     }
 
-
+    /**
+     * set initial values to all rods
+     * @params integer
+     * @return void
+     */
     public void set(int x){
 	int[] reed = parse_reed(x,frame_width);
-	//print_array(reed);
-	// if(reed.length > rods.length){
-	//     System.err.println("too large for this frame");
-	//     System.exit(-1);
-	// }
 	for(int i=0;i<reed.length;i++){
 	    rods[rods.length - reed.length + i].set(reed[i]);
 	}
-	//for(int i=0;i<rods.length;i++){
-	//    System.out.println("rods[" + i + "]:" + rods[i].value());
-	//}
     }
-    
+
+    /**
+     * add calculator method
+     * @params integer
+     * @return void
+     */
     public void add(int x){
 	int[] reed = parse_reed(x,frame_width);
-	//int reed.length = reed.length;
-	int rod_iterator = rods.length - 1;
-	// if(reed.length >= rods.length){
-	//     System.err.println("too large for this frame");
-	//     System.exit(-1);
-	// }
 	int carry = 0;
-	for(int i=(reed.length - 1); i>=0; i--){
-	    carry = rods[rod_iterator].add(reed[i] + carry);
-	    rod_iterator--;
+	for(int i=0; i<reed.length; i++){
+	    carry = rods[i].add(reed[i] + carry);
+	}
+    }
+
+    public void subtract(int x){
+	LOG.trace("input:" + x);
+	int[] reed = parse_reed(x,frame_width);
+	int carry = 0;
+	for(int i=0; i<=(reed.length - 1); i++){
+	    carry = rods[i].subtract(reed[i] + carry);
 	}
     }
 
@@ -55,10 +58,10 @@ public class Frame {
      */
     public int value(){
 	int result = 0;
-	for(int i=0;i<rods.length;i++){
+	for(int i=(rods.length - 1);i>=0;i--){
 	    result += rods[i].value();
 	    //System.out.println("value result=" + result);
-	    if(i < (rods.length - 1)){
+	    if(i > 0){
 		result *= 10;
 	    }
 	}
@@ -73,18 +76,29 @@ public class Frame {
      */
     private int[] parse_reed(int x, int width){
 	//int reed = max_reed(x);
+	//LOG.trace("input:" + x + " reed:" + max_reed(x));
 	int[] result = new int[width];
 	for(int i=0;i<width;i++){
 	    int remainder = x % 10;
 	    //System.out.println("remainder:" + remainder);
-	    result[width - i - 1] = remainder;
+	    result[i] = remainder;
 	    x /= 10;
 	}
 	//System.out.print("parse_reed:");
 	//print_array(result);
+	String s = "";
+	for(int i=0;i<result.length;i++){
+	    s += result[result.length - i - 1];
+	}
+	LOG.trace("result:" + s);
 	return result;
     }
-    
+
+    /**
+     * calculate reed of integer
+     * @params int value
+     * @return int
+     */
     private int max_reed(int input){
 	int reed = 0;
 	int x = input;
@@ -92,7 +106,7 @@ public class Frame {
 	    x /= 10;
 	    reed++;
 	}
-	LOG.debug("input:" + input + " max_reed:" + reed);
+	LOG.trace("input:" + input + " max_reed:" + reed);
 	return reed;
     }
     

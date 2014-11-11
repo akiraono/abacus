@@ -28,8 +28,8 @@ public class FrameTest {
 
     @Test public void addTest() {
     	Frame frame = new Frame(10);
-    	for(int x=0;x<1000;x++){
-	    for(int y=0;y<1000;y++){
+    	for(int x=0;x<10;x++){
+	    for(int y=0;y<10;y++){
 		frame.set(x);
 		frame.add(y);
 		int expected = x + y;
@@ -47,7 +47,7 @@ public class FrameTest {
     	    Method method = frame.getClass().getDeclaredMethod("parse_reed", args);
     	    method.setAccessible(true);
     	    int x = 1234567890;
-    	    int[] expected = new int[]{1,2,3,4,5,6,7,8,9,0};
+    	    int[] expected = new int[]{0,9,8,7,6,5,4,3,2,1};
     	    int[] actual = (int[])method.invoke(frame, x, 10);
     	    assertThat(actual, is(expected));
     	}catch(NoSuchMethodException e){

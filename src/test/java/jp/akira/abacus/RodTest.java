@@ -15,6 +15,7 @@ public class RodTest {
 	    assertThat(actual, is(expected));
 	}
     }
+    
     @Test
     public void addTest(){
 	Rod rod = new Rod();
@@ -24,6 +25,23 @@ public class RodTest {
 		if(expected > 9) break;
 		rod.set(x);
 		rod.add(y);
+		int actual = rod.value();
+		assertThat(actual, is(expected));
+	    }
+	}
+    }
+    
+
+    @Test
+    public void subtractTest(){
+	Rod rod = new Rod();
+	for(int x = 1; x<10; x++){
+	    for(int y = 1; y<10; y++){
+		int expected = x - y;
+		if(expected > 9) break;
+		if(expected < 0) break;
+		rod.set(x);
+		rod.subtract(y);
 		int actual = rod.value();
 		assertThat(actual, is(expected));
 	    }
@@ -57,6 +75,7 @@ public class RodTest {
 	    e.printStackTrace();
 	}
     }
+    
     @Test
     public void addOneTest() {
 	try {
@@ -68,6 +87,29 @@ public class RodTest {
 		int actual = rod.value();
 		assertThat(actual, is(expected));
 	    }
+	    rod = null;
+	}catch(NoSuchMethodException e){
+	    e.printStackTrace();
+	}catch(IllegalAccessException e){
+	    e.printStackTrace();
+	}catch(InvocationTargetException e){
+	    e.printStackTrace();
+	}    
+    }
+    
+    @Test
+    public void subtractOneTest() {
+	try {
+	    Rod rod = new Rod();
+	    rod.set(9); // initial value
+	    Method method = rod.getClass().getDeclaredMethod("subtractOne");
+	    method.setAccessible(true);
+	    for(int expected = 8; expected >= 0; expected--){
+		method.invoke(rod, null);
+		int actual = rod.value();
+		assertThat(actual, is(expected));
+	    }
+	    rod = null;
 	}catch(NoSuchMethodException e){
 	    e.printStackTrace();
 	}catch(IllegalAccessException e){

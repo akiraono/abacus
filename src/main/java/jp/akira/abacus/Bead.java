@@ -2,7 +2,7 @@ package jp.akira.abacus;
 import org.apache.logging.log4j.*;
 
 public class Bead {
-    private static final Logger LOG = LogManager.getLogger(jp.akira.abacus.Bead.class.getName());
+    private static final Logger LOG = LogManager.getLogger(Bead.class);
     private int unit = 1;
     private boolean status = false;
 
@@ -18,7 +18,7 @@ public class Bead {
      * @param value of unit. 1 or 5.
      */
     public Bead(int unit){
-	LOG.debug("unit = " + unit);
+	LOG.trace("unit = " + unit);
 	this.unit = unit;
     }
 
@@ -29,7 +29,6 @@ public class Bead {
      * @throws none
      */
     public void on(){
-	//LOG.info("status is on");
 	status = true;
     }
 
@@ -42,18 +41,25 @@ public class Bead {
     public void off(){
 	status = false;
     }
-    
+
+    /**
+     * check status of bead is active
+     * @param none
+     * @return boolean
+     */
     public boolean isOn(){
 	if(status){
 	    return true;
 	}
 	return false;
     }
+
+    /**
+     * check status of bead is inactive
+     * @param none
+     * @return boolean
+     */
     public boolean isOff(){
-	// if(status){
-	//     return false;
-	// }
-	// return true;
 	return !isOn();
     }
 
