@@ -161,12 +161,34 @@ public class Rod {
     }
 
     public String toString(){
-	String s = "";
-	if(bead5.isOn()){
-	    s += "<5> | ";
-	}else{
-	    s += " | <5>";
+	int value = value();
+	String s = "<5> | <1><2><3><4>";
+	switch(value){
+	case 0:
+	    s = s.replace("<1>"," | <1>");
+	    break;
+	case 6:
+	    s = s.replace("<5> | "," | <5>");
+	case 1:
+	    s = s.replace("<1>","<1> | ");
+	    break;
+	case 7:
+	    s = s.replace("<5> | "," | <5>");
+	case 2:
+	    s = s.replace("<2>","<2> | ");
+	    break;
+	case 8:
+	    s = s.replace("<5> | "," | <5>");
+	case 3:
+	    s = s.replace("<3>","<3> | ");
+	    break;
+	case 9:
+	    s = s.replace("<5> | "," | <5>");
+	case 4:
+	    s = s.replace("<4>","<4> | ");
+	    break;
 	}
+	//LOG.debug("" + value + ":" + s);
 	return s;
     }
 }

@@ -117,4 +117,75 @@ public class Frame {
 	}
 	System.err.print("\n");
     }
+
+    public String toString(){
+	String s = "";
+	for(int i=0;i<rods.length;i++){
+	    s += rods[i].toString();
+	}
+	s = frame_format(s);
+	return s;
+    }
+    private String frame_format(String s){
+	//LOG.debug(s);
+	final int rod_length = 7; // vartical height
+	final int bead_width = 3;
+	int length = s.length();
+	
+	// create array of String
+	String[] rows = new String[rod_length];
+	// initialize array
+	for(int i=0;i<rod_length;i++){
+	    rows[i] = new String();
+	}
+	// padding data
+	for(int z=0;z<(length);z+=(rod_length * bead_width)){
+	    for(int y=0;y<rod_length;y++){
+		for(int x=0;x<bead_width;x++){
+		    rows[y] += s.charAt(z + y*bead_width + x);
+		}
+	    }
+	}
+	// reverse direction
+	for(int i=0;i<rod_length;i++){
+	    rows[i] = reverse_string_3char(rows[i]);
+	}
+	// concatinate
+	String result = "\n";
+	result += "+";
+	for(int i=0;i<(rods.length * 3);i++){
+	    result += "="; // top frame
+	}
+	result += "+\n";
+	for(int i=0;i<rod_length;i++){
+	    if(i == 2){
+		result += "+";
+		for(int j=0;j<(rods.length * 3);j++){
+		    result += "="; // center split
+		}
+		result += "+\n";
+	    }
+	    result += "|";
+	    result += rows[i];
+	    result += "|\n";
+	}
+	result += "+";
+	for(int i=0;i<(rods.length * 3);i++){
+	    result += "="; // bottom frame
+	}
+	result += "+\n";
+	
+	return result;
+    }
+
+    private String reverse_string_3char(String x){
+	int length = x.length();
+	char[] data = new char[length];
+	for(int i=0;i<length;i+=3){
+	    data[i]   = x.charAt(length - i - 3);
+	    data[i+1] = x.charAt(length - i - 2);
+	    data[i+2] = x.charAt(length - i - 1);
+	}
+	return new String(data);
+    }
 }

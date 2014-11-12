@@ -35,6 +35,7 @@ public class AbacusCalculator {
 	frame.set(x);
 	frame.subtract(y);
 	LOG.info("" + x + " - " + y + " = " + frame.value());
+	LOG.info(frame);
     }
 }
 
