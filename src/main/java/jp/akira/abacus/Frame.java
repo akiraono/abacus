@@ -51,6 +51,15 @@ public class Frame {
 	}
     }
 
+    // public void multiply(int x){
+    // 	LOG.trace("input:" + x);
+    // 	int[] reed = parse_read(x,frame_width);
+    // 	int carry = 0;
+    // 	for(int i=0; i<=(reed.length - 1); i++){
+    // 	    rods[i].multiply(
+    // 	}
+    // }
+
     /**
      * calculate value of this frame
      * @parma none
