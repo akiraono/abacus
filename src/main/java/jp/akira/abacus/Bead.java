@@ -76,3 +76,5 @@ public class Bead {
 	return 0;
     }
 }
+
+
